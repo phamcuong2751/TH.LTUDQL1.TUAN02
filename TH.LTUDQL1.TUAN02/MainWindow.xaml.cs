@@ -87,6 +87,8 @@ namespace TH.LTUDQL1.TUAN02
 
                 }
                 MessageBox.Show("Import Excel succesful!", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
+                var products = db.Products.ToArray();
+                loadProduct.ItemsSource = products;
             }
 
         }
@@ -94,6 +96,7 @@ namespace TH.LTUDQL1.TUAN02
         private void ButtonClick_UploadImage(object sender, RoutedEventArgs e)
         {
             var Screen = new OpenFileDialog();
+            var Count = 0;
             if (Screen.ShowDialog() == true)
             {
                 var FileName = Screen.FileName;
@@ -101,9 +104,7 @@ namespace TH.LTUDQL1.TUAN02
                 string[] Substring = MyStr.Split('\\');
                 var NameImage = "";
                 foreach (var Str in Substring)
-                {
                     NameImage = Str;
-                }
 
                 var Image = new BitmapImage(new Uri(FileName, UriKind.Absolute));
                 var Encoder = new JpegBitmapEncoder();
@@ -118,20 +119,49 @@ namespace TH.LTUDQL1.TUAN02
                         FileImageName = NameImage
                     };
                     var db = new MyStoreEntities();
-                    db.Photos.Add(Photo);
-                    db.SaveChanges();
+                    var PhotoFromDB = (from pt in db.Photos select new { pt.FileImageName }).ToArray();
+                    foreach (var img in PhotoFromDB)
+                    {
+                        //Check if the image is the same with the rest of the images in the database
+                        string temp = img.ToString(); //temp = "{FileNameImage = "asus01.jpg"}"
+                        var position = temp.IndexOf("=");
+                        var length = temp.Length;
+                        var temp2 = temp.Substring(position + 2, length - 20); // Cut string get file name of image
+                        if (String.Compare(temp2, NameImage, true) == 0)
+                            Count++;
+                    }
+                    if (Count == 0)
+                    {
+                        db.Photos.Add(Photo);
+                        db.SaveChanges();
+                    }
                 }
-                MessageBox.Show("Image has been added successfully to database!");
-
+                if (Count > 0)
+                    MessageBox.Show("The image could not be added, because the product image already exists!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Image has been added successfully to database!");
             }
+            var database = new MyStoreEntities();
+            var photos = (from img in database.Photos
+                          join prodc in database.Products on img.FileImageName equals prodc.Image
+                          select new { img.ImageBinary, prodc.Name, prodc.Quantity, prodc.Price }).ToArray();
+            loadImage.ItemsSource = photos;
         }
 
         private void ButtonClick_LoadImage(object sender, RoutedEventArgs e)
         {
             var db = new MyStoreEntities();
-            //var photo = db.Photos.ToArray();
-            var photos = (from pt in db.Photos select new { pt.ImageBinary });
-            loadImage.ItemsSource = photos.ToArray();
+            var photos = (from img in db.Photos
+                          join prodc in db.Products on img.FileImageName equals prodc.Image
+                          select new { img.ImageBinary, prodc.Name, prodc.Quantity, prodc.Price }).ToArray();
+            loadImage.ItemsSource = photos;
+        }
+
+        private void ButtonClick_LoadData(object sender, RoutedEventArgs e)
+        {
+            var db = new MyStoreEntities();
+            var products = db.Products.ToArray();
+            loadProduct.ItemsSource = products;
         }
     }
 }

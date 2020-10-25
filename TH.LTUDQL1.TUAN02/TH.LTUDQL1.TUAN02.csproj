@@ -74,6 +74,7 @@
     <Compile Include="Category.cs">
       <DependentUpon>MyShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="CurrentcyConverter.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>MyShop.tt</DependentUpon>
     </Compile>
