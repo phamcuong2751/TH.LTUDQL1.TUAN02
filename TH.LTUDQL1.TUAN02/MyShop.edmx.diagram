@@ -5,19 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bdb462cfdce948cb8290c34470ac267a" Name="Diagram1">
-        <EntityTypeShape EntityType="MyStoreModel.Category" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyStoreModel.Customer" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyStoreModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyStoreModel.OrderState" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyStoreModel.Product" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyStoreModel.Purchase" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyStoreModel.Photos" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyStoreModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="MyStoreModel.FK_Product_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="MyStoreModel.FK_Order_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="MyStoreModel.FK_OrderDetail_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="MyStoreModel.FK_OrderDetail_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="MyStoreModel.FK_Order_OrderStatus" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyStoreModel.Category" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="MyStoreModel.Customer" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="MyStoreModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="MyStoreModel.OrderState" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="MyStoreModel.Product" Width="1.5" PointX="3" PointY="8.75" />
+        <EntityTypeShape EntityType="MyStoreModel.Purchase" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="MyStoreModel.Photo" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="MyStoreModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" />
+        <AssociationConnector Association="MyStoreModel.FK_Product_Category" />
+        <AssociationConnector Association="MyStoreModel.FK_Order_Customer" />
+        <AssociationConnector Association="MyStoreModel.FK_OrderDetail_Order" />
+        <AssociationConnector Association="MyStoreModel.FK_OrderDetail_Product" />
+        <AssociationConnector Association="MyStoreModel.FK_Order_OrderStatus" />
+        <AssociationConnector Association="MyStoreModel.FK_Product_Photos" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

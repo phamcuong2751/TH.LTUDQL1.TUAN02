@@ -17,13 +17,13 @@ namespace TH.LTUDQL1.TUAN02
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OrderState()
         {
-            this.Purchase = new HashSet<Purchase>();
+            this.Purchases = new HashSet<Purchase>();
         }
     
         public string Key { get; set; }
         public int Value { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchase> Purchase { get; set; }
+        public virtual ICollection<Purchase> Purchases { get; set; }
     }
 }

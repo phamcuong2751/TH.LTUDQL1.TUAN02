@@ -17,7 +17,7 @@ namespace TH.LTUDQL1.TUAN02
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Purchase()
         {
-            this.OrderDetail = new HashSet<OrderDetail>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public int Id { get; set; }
@@ -29,7 +29,7 @@ namespace TH.LTUDQL1.TUAN02
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual OrderState OrderState { get; set; }
     }
 }

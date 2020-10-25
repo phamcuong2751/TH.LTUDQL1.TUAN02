@@ -12,19 +12,18 @@ namespace TH.LTUDQL1.TUAN02
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Photo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Photo()
         {
-            this.Purchases = new HashSet<Purchase>();
+            this.Products = new HashSet<Product>();
         }
     
-        public string Tel { get; set; }
-        public string Fullname { get; set; }
-        public string Address { get; set; }
+        public string FileImageName { get; set; }
+        public byte[] ImageBinary { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchase> Purchases { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

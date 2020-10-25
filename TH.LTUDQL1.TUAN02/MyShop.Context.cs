@@ -25,13 +25,13 @@ namespace TH.LTUDQL1.TUAN02
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetail { get; set; }
-        public virtual DbSet<OrderState> OrderState { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Purchase> Purchase { get; set; }
-        public virtual DbSet<Photos> Photos { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<OrderState> OrderStates { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Purchase> Purchases { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

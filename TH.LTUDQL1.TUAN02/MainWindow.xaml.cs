@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,11 +31,11 @@ namespace TH.LTUDQL1.TUAN02
 
         private void ButtonClick_ImportExcel(object sender, RoutedEventArgs e)
         {
-            var screen = new OpenFileDialog();
+            var Screen = new OpenFileDialog();
             string[] Column = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K" };
-            if (screen.ShowDialog() == true)
+            if (Screen.ShowDialog() == true)
             {
-                var FileExcel = new Workbook(screen.FileName);
+                var FileExcel = new Workbook(Screen.FileName);
                 var Sheets = FileExcel.Worksheets;
                 var db = new MyStoreEntities();
                 var _id = 1;
@@ -51,7 +52,7 @@ namespace TH.LTUDQL1.TUAN02
                         Id = _id,
                         Name = Sheet.Name
                     };
-                    db.Category.Add(caterogy);
+                    db.Categories.Add(caterogy);
                     db.SaveChanges();
                     _id++;
 
@@ -75,7 +76,7 @@ namespace TH.LTUDQL1.TUAN02
                             Image = image
                         };
 
-                        caterogy.Product.Add(product);
+                        caterogy.Products.Add(product);
                         db.SaveChanges();
 
 
@@ -96,8 +97,41 @@ namespace TH.LTUDQL1.TUAN02
             if (Screen.ShowDialog() == true)
             {
                 var FileName = Screen.FileName;
+                var MyStr = FileName;
+                string[] Substring = MyStr.Split('\\');
+                var NameImage = "";
+                foreach (var Str in Substring)
+                {
+                    NameImage = Str;
+                }
+
+                var Image = new BitmapImage(new Uri(FileName, UriKind.Absolute));
+                var Encoder = new JpegBitmapEncoder();
+                Encoder.Frames.Add(BitmapFrame.Create(Image));
+                using (var Stream = new MemoryStream())
+                {
+                    Encoder.Save(Stream);
+
+                    var Photo = new Photo()
+                    {
+                        ImageBinary = Stream.ToArray(),
+                        FileImageName = NameImage
+                    };
+                    var db = new MyStoreEntities();
+                    db.Photos.Add(Photo);
+                    db.SaveChanges();
+                }
+                MessageBox.Show("Image has been added successfully to database!");
 
             }
+        }
+
+        private void ButtonClick_LoadImage(object sender, RoutedEventArgs e)
+        {
+            var db = new MyStoreEntities();
+            //var photo = db.Photos.ToArray();
+            var photos = (from pt in db.Photos select new { pt.ImageBinary });
+            loadImage.ItemsSource = photos.ToArray();
         }
     }
 }

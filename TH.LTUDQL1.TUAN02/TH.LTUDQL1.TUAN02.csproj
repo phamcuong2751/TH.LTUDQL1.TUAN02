@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ByteArrayToImageConverter.cs" />
     <Compile Include="Category.cs">
       <DependentUpon>MyShop.tt</DependentUpon>
     </Compile>
@@ -87,7 +88,7 @@
     <Compile Include="OrderState.cs">
       <DependentUpon>MyShop.tt</DependentUpon>
     </Compile>
-    <Compile Include="Photos.cs">
+    <Compile Include="Photo.cs">
       <DependentUpon>MyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
@@ -96,7 +97,7 @@
     <Compile Include="Purchase.cs">
       <DependentUpon>MyShop.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>MyShop.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
